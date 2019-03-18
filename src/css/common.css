@@ -1,0 +1,135 @@
+@charset "UTF-8";
+.m-head {
+  width: 100%;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(235, 235, 235, 0.5);
+  z-index: 11;
+  & .head {
+    width: 1240px;
+    height: 80px;
+    margin: 0 auto;
+    z-index: 11;
+  }
+  & .logo {
+    float: left;
+    width: 148px;
+    height: 35px;
+    background: url(../images/logo@2x.png) no-repeat;
+    background-size: contain;
+    margin-top: 23px;
+  }
+  & .list {
+    float: right;
+    & li {
+      float: left;
+      font-size: 16px;
+      color: #343434;
+      margin-right: 46px;
+      line-height: 80px;
+      text-align: center;
+      position: relative;
+      & a {
+        color: #343434;
+      }
+      & .line {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #5f83f6;
+        left: 0;
+        bottom: 24px;
+      }
+    }
+    & .cur {
+      color: #5f83f6;
+      & a {
+        color: #5f83f6;
+      }
+      & .line {
+        display: block;
+      }
+    }
+  }
+}
+
+.m-foot {
+  background: #f8f8f8;
+  width: 100%;
+  height: 84px;
+  & .foot {
+    min-width: 1240px;
+    height: 84px;
+    margin: 0 auto;
+    background: #f8f8f8;
+    & .link {
+      display: inline-block;
+      font-size: 14px;
+      color: #949494;
+      text-align: center;
+      text-decoration: none;
+      border-bottom: 1px solid #949494;
+    }
+    & .ml-link {
+      margin-left: 28px;
+      text-decoration: none;
+      border-bottom: 1px solid #949494;
+    }
+    & .ml-link2 {
+      margin: 0 37px 0 28px;
+      text-decoration: none;
+      border-bottom: 1px solid #949494;
+    }
+    & .text1 {
+      font-size: 14px;
+      color: #949494;
+      text-align: center;
+      padding-top: 78px;
+    }
+    & .text2 {
+      font-size: 14px;
+      color: #949494;
+      text-align: center;
+      padding-top: 7px;
+    }
+    & .text3 {
+      font-size: 14px;
+      color: #949494;
+      text-align: center;
+      padding-top: 33px;
+    }
+  }
+}
+
+.protocol-title {
+  font-size: 20px;
+  color: #4a4a4a;
+  text-align: center;
+  padding-top: 54px;
+}
+
+.protocol-text {
+  font-size: 14px;
+  color: #656565;
+  line-height: 25px;
+  padding-top: 30px;
+}
+
+.protocol-text2 {
+  font-size: 14px;
+  color: #656565;
+  line-height: 25px;
+  padding-top: 4px;
+}
+
+.protocol-h3 {
+  font-size: 16px;
+  color: #000000;
+  line-height: 25px;
+  padding-top: 30px;
+}
+
+.opacity0 {
+  opacity: 0;
+}

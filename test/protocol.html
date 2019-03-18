@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>网易圈圈</title>
+    <meta name="keywords" content="网易圈圈，万能的圈圈">
+    <meta name="description" content="网易圈圈，万能的圈圈">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta http-equiv="Cache-Control" content="max-age=0">
+    <meta http-equiv="expires" content="Wed, 23 Aug 2019 12:40:27 UTC">
+    <link rel="icon" href="./favicon.ico">
+    
+    <script src="./env.js"></script>
+    <script>
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+        } else {
+            window.location.href = CONFIGS.url + CONFIGS.path + location.search + location.hash
+        }
+    </script>
+    <script>
+        (function (document, datracker, root) {
+            var help = {}; help.cookie = { get: function (name) { var nameEQ = name + "="; var ca = document.cookie.split(";"); for (var i = 0; i < ca.length; i++) { var c = ca[i]; while (c.charAt(0) == " ") { c = c.substring(1, c.length) } if (c.indexOf(nameEQ) === 0) { return decodeURIComponent(c.substring(nameEQ.length, c.length)) } } return null }, parse: function (name) { var cookie; try { cookie = _.JSONDecode(_.cookie.get(name)) || {} } catch (err) { } return cookie }, set: function (name, value, days, cross_subdomain, is_secure) { var cdomain = "", expires = "", secure = ""; if (cross_subdomain) { var matches = document.location.hostname.match(/[a-z0-9][a-z0-9\-]+\.[a-z\.]{2,6}$/i), domain = matches ? matches[0] : ""; cdomain = ((domain) ? "; domain=." + domain : "") } if (days) { var date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); expires = "; expires=" + date.toGMTString() } if (is_secure) { secure = "; secure" } var new_cookie_val = name + "=" + encodeURIComponent(value) + expires + "; path=/" + cdomain + secure; document.cookie = new_cookie_val; return new_cookie_val }, remove: function (name, cross_subdomain) { _.cookie.set(name, "", -1, cross_subdomain) } }; root.getHubbleJSSDKVersions = function (version) { help.cookie.set("mp_versions_hubble_jsSDK", version, false, true); loadJsSDK() }; function removeElement(_element) { var _parentElement = _element.parentNode; if (_parentElement) { _parentElement.removeChild(_element) } } function addScriptTag(src) { var loaded; var head = document.getElementsByTagName("head")[0]; var script = document.createElement("script"); var localVersion = help.cookie.get("mp_versions_hubble_jsSDK"); script.setAttribute("type", "text/javascript"); script.src = src; script.onload = script.onreadystatechange = function () { if (!loaded && (!script.readyState || /loaded|complete/.test(script.readyState))) { script.onload = script.onreadystatechange = null; loaded = true; removeElement(script) } }; head.appendChild(script) } function addScriptTagTwo(url, fn) { var isFirst = true; var iframe; try { iframe = document.createElement("iframe"); iframe.style.display = "none" } catch (e) { iframe = document.createElement("iframe"); iframe.setAttribute("src", url) } var loadfn = function () { if (isFirst) { iframe.contentWindow.location = "about:blank"; isFirst = false } else { fn(iframe.contentWindow.name); iframe.contentWindow.document.write(""); iframe.contentWindow.close(); document.body.removeChild(iframe); iframe.src = ""; iframe = null } }; iframe.src = url; if (iframe.attachEvent) { iframe.attachEvent("onload", loadfn) } else { iframe.onload = loadfn } if (iframe) { document.body.appendChild(iframe) } } function loadJsSDK() { var localVersion = help.cookie.get("mp_versions_hubble_jsSDK"); var HUBBLE_LIB_URL = "https://hubble.netease.com/track/w/DATracker.globals.js"; var script, first_script; script = document.createElement("script"); script.type = "text/javascript"; script.async = true; if (localVersion) { HUBBLE_LIB_URL = "https://hubble-js-bucket.nosdn.127.net/" + localVersion + ".js" } script.src = HUBBLE_LIB_URL; first_script = document.getElementsByTagName("script")[0]; first_script.parentNode.insertBefore(script, first_script) } if (!datracker["__SV"]) {
+                var win = window; try { var getHashParam, matches, state, loc = win.location, hash = loc.hash; getHashParam = function (hash, param) { matches = hash.match(new RegExp(param + "=([^&]*)")); return matches ? matches[1] : null }; if (hash && getHashParam(hash, "state")) { state = JSON.parse(decodeURIComponent(getHashParam(hash, "state"))); if (state["action"] === "mpeditor") { win.sessionStorage.setItem("_mpcehash", hash); history.replaceState(state["desiredHash"] || "", document.title, loc.pathname + loc.search) } } } catch (e) { } var gen_fn, functions, i, lib_name = "DATracker"; window[lib_name] = datracker; datracker["_i"] = []; datracker["init"] = function (token, config, name) {
+                    var target = datracker; if (typeof (name) !== "undefined") { target = datracker[name] = [] } else { name = lib_name } target["people"] = target["people"] || []; target["abtest"] = target["abtest"] || []; target["toString"] = function (no_stub) { var str = lib_name; if (name !== lib_name) { str += "." + name } if (!no_stub) { str += " (stub)" } return str }; target["people"]["toString"] = function () { return target.toString(1) + ".people (stub)" }; function _set_and_defer(target, fn) { var split = fn.split("."); if (split.length == 2) { target = target[split[0]]; fn = split[1] } target[fn] = function () { target.push([fn].concat(Array.prototype.slice.call(arguments, 0))) } } functions = "track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(" "); for (i = 0; i < functions.length; i++) { _set_and_defer(target, functions[i]) } datracker["_i"].push([token, config, name])
+                }; datracker["__SV"] = 1.6
+            } if (!help.cookie.get("mp_versions_hubble_jsSDK")) { addScriptTag("https://hubble.netease.com/track/w/version.js?random" + Math.random()) } else { loadJsSDK() }
+        })(document, window["DATracker"] || [], window);
+        //初始化
+        DATracker.init(CONFIGS.da, {
+            truncateLength: 255, persistence: "localStorage", cross_subdomain_cookie: false
+        })
+    </script>
+<link href="protocol_css/protocol.css" rel="stylesheet"></head>
+
+<body>
+    <header class="m-head">
+        <div class="head">
+            <a href="./index.html" class="logo"></a>
+            <ul class="list">
+                <li><a href="./index.html" id="sy">首页</a><span class="line"></span><p></p>
+                </li><li><a href="./dynamic.html" id="dt">圈圈动态</a> <span class="line"></span><p></p>
+                </li><li><a href="http://mp.q.163.com/" id="pt">公众平台</a><span class="line"></span><p></p>
+                </li><li><a href="./contactus.html" id="bottom">联系我们</a><span class="line"></span><p></p>
+            </li></ul>
+        </div>
+    </header>
+    <div class="m-protocol">
+        <ul class="list clearfix">
+            <li class="cur"><a href="javascript:;">用户协议</a><span class="line"></span><p></p>
+            </li><li><a href="./privacy.html">隐私政策</a><span class="line"></span><p></p>
+        </li></ul>
+        <h2 class="protocol-title">用户协议</h2>
+        <div class="page">
+            <div class="page_yszc">
+                <p class="sp_underline">欢迎使用由网易公司提供的网易圈圈服务，本服务条款是您与网易圈圈之间的服务条款。在您注册成为网易圈圈服务的客户之前，请仔细阅读以下全部内容（特别是加粗的内容）。未成年人则应在法定监护人陪同下阅读。如您使用网易圈圈服务，即表示您自愿接受本服务条款的全部内容。如果您不接受本服务条款，请不要安装、使用、注册或以其他方式使用\网易圈圈的产品。以下服务条款请您（以下简称“您”）详细阅读了解：</p>
+                <h2 class="ysmlyi">一、服务条款的确认和接纳</h2>
+                <p><span class="sp_underline">本服务条款内容包括条款正文、网易圈圈服务已经发布的或将来可能发布的各类细分功能的服务规则、政策、说明及协议。</span>所有规则为本条款不可分割的组成部分，与条款正文具有同等效力。除另行明确声明外，您使用网易圈圈服务的行为都应当受本服务条款约束。</p>
+                <h2 class="ysmlyi">二、网易圈圈服务简介</h2>
+                <p>本服务条款所称的网易圈圈服务是指由网易公司所有和运营的网易圈圈服务，即向用户提供的即时通讯工具及多种服务。您可以通过互联网或移动设备享受这些服务，包括但不限于关系链拓展、便捷工具、公众账号、与其他软件或硬件互通等功能或内容的软件许可及服务，以及网易圈圈提供的、不时增加或减少的其他服务项目；例如由二人或多人参与，发送文字、语音、视频、音乐、图片和链接等内容的服务等。</p>
+                <h2 class="ysmlyi">三、软件的获取、卸载与更新</h2>
+                <p>您可以从网易的网站上获取网易圈圈客户端软件，网易可能提供包括但不限于iOS、Android、Windows
+                    Phone、Symbian、BlackBerry、Windows、Mac等多个应用版本，您必须选择与所安装终端设备相匹配的软件版本。网易给予您对于这些软件的个人的、不可转让、非排他性及免费的许可，以使用这些软件，您仅可为访问或使用网易圈圈服务的目的而使用这些软件及服务。</p>
+                <p>如果您从未经网易授权的第三方获取本软件及安装程序，网易将无法保证该软件能够正常使用，并对因此给您造成的损失不予负责。</p>
+                <p>如果您不再需要使用上述软件或者需要安装新版软件，可以自行卸载。</p>
+                <p>为了保证网易圈圈服务的安全性和功能的一致性，网易有权在不事先向您特别通知的情形下对软件进行更新，或者对软件的部分功能效果进行改变或限制。</p>
+                <p>网易圈圈服务的软件新版本发布后，旧版本的软件可能无法使用。网易不保证旧版本软件继续可用及继续提供相应的客户服务，请您随时下载最新版本。</p>
+                <h2 class="ysmlyi">四、网易圈圈账号规则及管理</h2>
+                <p>网易圈圈账号注册资料包括但不限于您的账号名称、手机号码、头像、密码、个人简介、注册或更新网易圈圈账号时输入的所有信息。您在注册网易圈圈账号时承诺遵守法律法规、社会主义制度、国家利益、公民合法权益、公共秩序、社会道德风尚和信息真实性等七条底线，不得在网易圈圈账号注册资料中出现违法和不良信息，且您保证在注册和使用账号时，不得有以下情形：</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;a&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;违反宪法或法律法规规定的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;b&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;c&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;损害国家荣誉和利益的，损害公共利益的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;d&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;煽动民族仇恨、民族歧视，破坏民族团结的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;e&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;破坏国家宗教政策，宣扬邪教和封建迷信的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;f&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;散布谣言，扰乱社会秩序，破坏社会稳定的</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;g&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；侮辱或者诽谤他人，侵害他人合法权益的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;h&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;含有法律、行政法规禁止的其他内容的。</p>
+                <p>若您的账号注册资料存在违法和不良信息或包含有不正确、不真实信息的，网易公司有权采取通知限期改正、暂停使用、取消您资格等措施。对于冒用他人信息登录、使用、填写账号名称、头像、个人简介的，网易公司有权取消该账号的使用，并向政府主管部门进行报告。</p>
+                <p class="sp_underline">如您是未成年人，需经过您的法定监护人书面同意后，方能注册网易圈圈账号并使用网易圈圈服务。</p>
+                <p>网易圈圈帐号的所有权归网易公司所有，您通过完成申请注册手续并将账号绑定您本人的手机号码后，仅获得属于您个人的该帐号的使用权。同时，您应对其注册的网易圈圈账号负责，保证只有您本人可以使用您的网易圈圈账号，该账号不可转让、不可赠与、不可继承。</p>
+                <p>您对其注册的网易圈圈服务及密码进行的一切操作负完全的责任，且您同意对其的账号和密码进行妥善保管，对于因密码泄露所致的损失，由您自行承担。如您发现有他人冒用或盗用您的账号及密码或任何其他未经合法授权之情形时，应立即以有效方式通知网易公司，要求网易公司暂停相关服务。同时，您理解网易公司对其的请求采取行动需要合理期限，在网易公司采取措施前，网易公司对已执行的指令及所导致的您的损失不承担任何责任。</p>
+                <p>您有权随时删除或注销网易圈圈账号并终止服务。即便是您不慎删除或注销账号，原有的账号和数据亦无法恢复，由此给您造成的损失由您自行承担。</p>
+                <p>网易在不事先通知的情形下，有权删除您自最后一次登录起超过一年以上未登录的账号。自账号删除时起，您于网易圈圈服务的所有使用权不论任何理由均为消灭。</p>
+                <h2 class="ysmlyi">五、网易圈圈服务及服务条款的变更和中止</h2>
+                <p>网易圈圈服务始终在不断变更和改进服务。网易圈圈服务可能会增加或删除部分功能或服务，也可能暂停或彻底停止本产品。本平台有权在必要时单方变更、中止、终止本协议或上述内容，并在网易圈圈网站或产品其他平台的适当位置进行提前通知或公告，变更后的协议或相关内容一旦在相关页面上公布即有效代替原来的协议或内容。如您继续使用网易产品或服务，则视为您接受上述变更。</p>
+                <h2 class="ysmlyi">六、隐私制度</h2>
+                <p>尊重您个人隐私是网易公司的一项基本政策。所以，网易公司将以安全的方式管理从您处搜集的数据，并对安全管理采取严格的措施。网易公司不会公开或透露您的注册资料及保存在网易圈圈服务中的非公开内容，除非网易公司在诚信的基础上认为透露这些信息在以下几种情况是必要的：</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;a&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;事先获得您的明确授权；或</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;b&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;遵守有关法律规定，包括在国家有关机关查询时，提供您的注册信息、您在网易的网页上发布的信息内容及其发布时间、互联网地址或者域名；或</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;c&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;保持维护网易公司的知识产权和其他重要权利；或</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;d&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;在紧急情况下竭力维护您个人和社会大众的隐私安全；或</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;e&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;根据本条款相关规定或者网易公司认为必要的其他情况下。</p>
+                <p>您应知悉，网易圈圈提供的特定服务可能会让第三方知晓您的信息，例如通过通讯录查询好友、通过公众账号发布评论、通过存在非好友用户的公众群发布消息等，您发布或主动公开的内容可能被他人传播，您应充分了解再选择网易圈圈提供的特定产品或服务功能，注意保护您的个人信息及隐私并理解上述事项可能带来的风险和责任。</p>
+                <p>具体隐私政策条款可见http://q.163.com/网站上公示。</p>
+                <h2 class="ysmlyi">七、不可抗力条款</h2>
+                <p>网易公司对不可抗力导致的损失不承担责任。本服务条款所指不可抗力包括：天灾、法律法规或政府指令的变更，因网络服务特性而特有的原因，例如境内外基础电信运营商的故障、光缆等基础设施损坏、计算机或互联网相关技术缺陷、互联网覆盖范围限制、计算机病毒、黑客攻击等因素，及其他合法范围内的不能预见、不能避免并不能克服的客观情况。</p>
+                <h2 class="ysmlyi">八、使用规则</h2>
+                <p>您有权选择网易圈圈提供的服务内容，并获得网易圈圈提供的技术支持。您在使用网易圈圈服务时选择连接到运营商提供的2G/3G/4G/LTE网络时，请注意您的运营商可能会向您收取额外的数据费用，该项费用需由您自行承担。</p>
+                <p>您保证您使用网易圈圈服务或通过网易圈圈服务制作、复制、发布、传播内容时将遵从国家、地方法律法规、行业惯例和社会公共道德，该内容包括但不限于网易圈圈账号头像、名字、用户签名等注册信息，发送、回复的文字、语音、图片、链接等内容，及其他视同网易圈圈服务过程中您所产生或传播的内容。您保证不会利用网易圈圈服务进行存储、发布、传播如下信息和内容：</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;a&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;违反国家法律法规政策的任何内容（信息）；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;b&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;违反国家规定的政治宣传或新闻信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;c&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;涉及国家秘密或安全的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;d&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;封建迷信或淫秽、色情、下流的信息或教唆犯罪的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;e&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;博彩有奖、赌博游戏；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;f&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;违反国家民族和宗教政策的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;g&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;妨碍互联网运行安全的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;h&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;侵害他人隐私权、名誉权、肖像权、知识产权、商业秘密等合法权益的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;i&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;骚扰、广告信息、过度营销信息及垃圾信息，或含有任何有过度暴力表现、包含性或性暗示的、涉及人种、国籍、信仰、性别等有关歧视的内容、对反社会势力提供利益或其他协助的信息；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;j&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;其他有损于社会秩序、社会治安、公共道德的信息或内容。</p>
+                <p>如您有违反以上承诺的行为，则此等行为导致的后果与网易圈圈无关。如有确切记录证明您违反上述承诺的，网易公司有权在不事先通知的情形下，删除或拒绝发布此类内容，甚至暂停或终止对您提供部分或全部服务。</p>
+                <p>您应遵守网易圈圈的所有其他规定和程序。您须对其在使用网易圈圈服务过程中的行为承担法律责任。您承担法律责任的形式包括但不限于：对受到侵害者进行赔偿，以及在网易公司首先承担了因您的行为导致的行政处罚或侵权损害赔偿责任后，您应给予网易公司等额的赔偿。若您违反以上规定，网易公司有权作出独立判断立即暂停或终止对您提供部分或全部服务，包括冻结、取消您的账号的使用权限等措施。</p>
+                <p>对于您利用网易圈圈所发布的信息，网易公司保留依据国家相关法律法规对其通讯的信息进行关键词过滤的权利，如发现您发送内容明确存在违反国家相关法律法规的，网易工商有权作出包括但不限于劝阻、拦截、直至向有关公安部门举报等行为。</p>
+                <p>除经许可外，您不得修改、翻译、出版、改编、出租、转许可或以其他方式传播或转让网易圈圈提供的服务或软件。也不得逆向工程、反编译或试图以其他方式发现网易圈圈的任何源代码。您不得删除网易圈圈提供的软件及其他副本上所有关于版权的信息、内容。</p>
+                <p>您保证不得滥用网易圈圈服务，包括但不限于利用网易圈圈服务进行侵害网易公司或他人的知识产权或者合法利益的其他行为。您使用网易圈圈服务过程中不得从事下列行为：</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;a&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;提交、发布虚假信息，或冒充、利用网易或他人名义的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;b&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;诱导其他用户点击链接页面或分享信息的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;c&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;虚构事实、隐瞒真相以误导、欺骗他人的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;d&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;未经网易书面许可利用网易圈圈账号和任何功能，以及第三方运营平台进行推广或互相推广的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;e&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;未经网易明示，传送相同或类似讯息给不特定多数用户的行为；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;f&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;不当搜集、公开或提供他人的个人资料、注册数据、使用记录数据等的行为；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;g&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;制作、发布与以上行为相关的方法、工具，或对此类方法、工具进行运营或传播，无论这些行为是否为商业目的；</p>
+                <p>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;h&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;其他违反法律法规规定、恐由危害公共秩序或善良风俗、侵犯他人合法权益的行为。</p>
+                <p>如网易圈圈发现您违反本服务条款的约定，有权根据情况采取相应的处理措施，包括但不限于立即终止服务、中止服务或删除相应信息等。如果第三方机构或个人对您提出质疑或投诉，网易圈圈将通知您，您有责任在规定时间内进行说明并出具证明材料，如您未能提供相反证据或您逾期未能反馈的，网易圈圈将采取包括但不限于立即终止服务、中止服务或删除相应信息等处理措施。因您未及时更新联系方式或联系方式不正确而致使未能联系到您的，亦视为您逾期未能反馈。</p>
+                <p>您在使用网易圈圈提供的【钱包功能】时，您授权本公司在法律规定的范围内保存您的姓名、身份证号、手机号码、交易记录等信息，您在使用该功能时发出的支付指令均视为您本人发出的支付指令。您应妥善保管您的身份账号、银行卡信息及密码、手机二维码、指纹信息等，并确保您的移动终端设备安全。</p>
+                <p>您了解网易圈圈无法保证其所提供的服务毫无瑕疵，但网易圈圈承诺不断提升服务质量及服务水平。所以您同意：即使网易圈圈提供的服务存在瑕疵，但上述瑕疵是当时行业技术水平所无法避免的，其将不被视为网易圈圈违约。您同意和网易圈圈一同合作解决上述瑕疵问题。</p>
+                
+                <h2 class="ysmlyi">九、第三方服务</h2>
+                <p>网易公司可能会与第三方合作向您提供网易圈圈服务的相关服务，您在使用涉及第三方提供的产品或服务时，您还需遵守第三方的产品或服务规则、用户协议及隐私政策等。该等产品或服务所应负责任，一概由提供产品或服务的第三方承担。</p>
+                <p>您在使用网易圈圈服务过程中，网易将采取措施要求第三方获取您的任何数据应遵守相关法律法规的规定，并在事先获得您的明确同意的前提下将您的信息提供给第三方，但网易不保证第三方所提供服务及内容的安全性、准确性、有效性及其他不确定的风险，由此引发的任何争议及损害，网易无需承担任何责任。</p>
+                <p>您在使用本软件访问未与网易进行合作的第三方网站时，因第三方网站及相关内容可能导致的风险，与网易无关。</p>
+                <h2 class="ysmlyi">十、通知</h2>
+                <p>所有发给您的通知都可通过站内信、电子邮件、常规的信件或在网易圈圈适当位置公告等方式进行传送。网易圈圈服务将通过上述方法之一将消息传递给您，告知服务条款的修改、产品或服务变更、或其它重要事情。</p>
+                <p>为使您及时、全面了解网易公司提供的各项服务，您同意，网易公司可以多次、长期向您发送各类商业性短信息而无需另行获得您的同意。</p>
+                <h2 class="ysmlyi">十一、内容、商标所有权及其他相关知识产权</h2>
+                <p>网易圈圈由网易公司研发，除涉及第三方授权的内容或技术外，网易圈圈所提供服务的专利、版权、设计等知识产权，以及与网易圈圈相关的所有信息内容，包括但不限于文字、图片、档案、资讯、资料、网站架构、页面设计均由网易公司依法享有知识产权，受中华人民共和国著作权法、商标法、专利法、反不正当竞争法和相应的国际条约以及其他知识产权法律法规的保护。所以，您只能在网易公司授权下才能使用这些内容，此使用权不得转让及再授权，如您通过显示为「购买」等文字内容的接口，以付费方式获得这些内容时，亦不表示其相关知识产权及其他权利因此而转让给您，网易公司仅授予您上述内容的使用权。未经网易公司产品书面同意，您不能为任何营利或非营利性的目的擅自复制、再造这些内容、或创造与内容有关的派生产品、或以转让、许可的方式授权第三方实施、利用和转让上述知识产权。</p>
+                <p>网易公司有权在服务中或经过服务在网易圈圈服务中投放各种广告和宣传信息。同时网易圈圈、网易等本文中提及的产品和服务名称有可能为网易公司或其关联公司的商标，未经网易公司事先书面同意，您不得以任何方式展示或使用或作其他处理，也不得向他人表明您有权展示、使用、或其他有权处理的行为。</p>
+                <p>网易公司尊重知识产权并注重保护您享有的各项权利。在网易圈圈所含服务中，您可能需要通过发表评论等各种方式向网易圈圈提供内容。在此情况下，您仍然享有此等内容的完整知识产权。您在提供内容时将授予网易公司一项全球性的免费许可，允许网易公司使用、传播、复制、修改、再许可、翻译、创建衍生作品、出版及展示此等内容。</p>
+                <h2 class="ysmlyi">十二、信息储存</h2>
+                <p>网易圈圈服务对其提供的所有服务将尽力维护其安全性及方便性，但对服务中出现的信息（包括但不限于您发布的信息）删除或储存失败不承担任何责任。另外网易公司有权判定您的行为是否符合本服务条款的要求，如您违背了本服务条款的规定，网易公司有权中止或者终止您使用网易圈圈服务。</p>
+                <p>您选择停止使用网易圈圈服务或服务被终止或取消，您的数据将在法定的数据保存范围及保存期限满后永久地从网易的服务器上删除，您明确知悉网易没有义务根据您的要求向您返还任何数据。</p>
+                <h2 class="ysmlyi">十三、保密</h2>
+                <p>您对于因使用网易圈圈服务过程中了解或接触到的网易的商业秘密及其他机密和信息，服务和协议内容及您使用网易网易圈圈过程中产生的相关信息及往来文件（以下统称“保密信息”）均应保守秘密；非经书面同意，不得向第三方泄露、给予或转让该保密信息。本保密条款不因本协议的终止而终止。</p>
+                <h2 class="ysmlyi">十四、用户责任</h2>
+                <p style="margin:10.6pt 0pt;  text-align:justify;">您应自行承担使用网易圈圈服务过程中违法或违反本服务条款的行为及其结果所产生的一切责任。网易认为您在违反本服务条款情形下，将采取有必要且适当的措施，包括但不限于中断使用许可、停止提供服务、限制使用、冻结或注销用户账号等，但此不代表网易有义务防止或纠正该等违反情形。因您违反本服务条款而致使网易直接或间接遭受损害的，网易有权要求您进行赔偿。</p>
+                <h2 class="ysmlyi">十五、 法律</h2>
+                <p>本条款适用中华人民共和国的法律，并且排除一切冲突法规定的适用。如您在使用本协议项下服务中出现纠纷的，您同意将纠纷交由中国国际经济贸易仲裁委员会仲裁解决，并由3名仲裁员进行审理。仲裁裁决是终局的，对双方都有约束力。仲裁费用由败诉一方承担。</p>
+                <h2 class="ysmlyi">十六、其他</h2>
+                <p>除非另有证明，网易公司储存在其服务器上的数据是您使用网易服务的唯一有效证据。</p>
+                <p>本条款自发布之日起实施，并构成您和网易公司之间的共识。网易公司不行使、未能及时行使或者未充分行使本条款或者按照法律规定所享有的权利，不应被视为放弃该权利，也不影响网易公司在将来行使该权利。</p>
+                <p>如果您对本条款内容有任何疑问，请发送邮件至我们的客服邮箱：<span style="background-color:#ffffff; color:#333333;">quanquan@service.netease.com。</span></p>
+                <p>&#xa0;</p>
+            </div>
+        </div>
+    </div>
+    <footer class="m-foot">
+        <div class="foot">
+            <p class="text3">
+                <a href="./protocol.html" class="link" id="xy">用户协议</a>
+                <a href="./privacy.html" class="link ml-link" id="ys">隐私政策</a>
+                <span>  网易公司版权所有©1997-2019    
+                    杭州网易质云科技有限公司运营     增值电信业务许可证：浙B2-20161040</span></p>
+        </div>
+    </footer>
+<script type="text/javascript" src="js/protocol.4828940f602a336334cb.js"></script></body>
+
+</html>

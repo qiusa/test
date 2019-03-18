@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.m-detail {
+    width: 855px;
+    padding: 100px 0 50px;
+    border-bottom: 1px solid #E7E7E7;
+    margin: 0 auto 90px;
+    & .title {
+        font-size: 35px;
+        color: #4A4A4A;
+    }
+    & .date {
+        padding-top: 12px;
+        font-size: 14px;
+        color: #656565;
+    }
+    & .h2 {
+        font-size: 18px;
+        color: #000000;
+        line-height: 25px;
+        padding-top: 50px;
+        font-weight: bold;
+    }
+    & .text {
+        font-size: 14px;
+        color: #656565;
+        padding-top: 36px;
+        line-height: 25px;
+    }
+}
